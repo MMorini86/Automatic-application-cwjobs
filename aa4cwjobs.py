@@ -64,8 +64,8 @@ while fine != 0:
     jobs = soup.findAll('div', {'class' : 'hd'}) #section with job title and link to job description
     jobsd = soup.findAll('ul',{'class' : "bd job-details"}) #section with main job detail
 
-    #fine = len(jobsd)  
-    fine=0
+    fine = len(jobsd)  
+    
     k=0
               
     for j in jobs:
