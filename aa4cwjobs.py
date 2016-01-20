@@ -1,3 +1,4 @@
+# first script to launch
 import urllib.request 
 import re
 import time
