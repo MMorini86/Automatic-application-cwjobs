@@ -20,7 +20,7 @@ At the moment I wrote 4 scripts in python to launch sequentially:
                       applied boolean,
                       job_key character varying(50),
                       jtitle character varying(100),
-                      contact_p character varying(50),
+                      contact_p character varying(80),
                       CONSTRAINT cwjobs_pkey PRIMARY KEY (jid)
                     )
   2. send_app.py: using Selenium I will apply only one to all jobs present in the table cwjobs. Option: filter again on the location.
