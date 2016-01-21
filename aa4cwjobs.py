@@ -1,4 +1,3 @@
-# first script to launch
 import urllib.request 
 import re
 import time
@@ -50,25 +49,27 @@ except psycopg2.Error as e:
 
 cur = conn.cursor()
 
-
+jk = input("Insert Job title, skills or company to limit the search (just enter to select all):")
+jk = jk.strip().replace(" ",'+')
+loc = input("Where do you want to work (if you press just return it will be considered everywhere): ")
+s = requests.session()
+#tags and other names often change
 while fine != 0:
     
-    jk = input("Insert Job title, skills or company to limit the search (just enter to select all):")
-    jk = jk.strip().replace(" ",'+')
-    loc = input("Where do you want to work (if you press just return it will be considered everywhere): ")
-    url= "http://www.cwjobs.co.uk/JobSearch/Results.aspx?Keywords="+jk+"&LTxt="+loc+"&Radius=10&Page="+str(i)
+    url= "http://www.cwjobs.co.uk/JobSearch/Results.aspx?Keywords="+jk+"&LTxt="+loc+"&Radius=10&PageNum="+str(i)
     
-    s = requests.session()
+    print(url)
     r = s.get(url)
-    
+   
     soup = BeautifulSoup(r.text, 'html.parser')
     jobs = soup.findAll('div', {'class' : 'hd'}) #section with job title and link to job description
     jobsd = soup.findAll('ul',{'class' : "bd job-details"}) #section with main job detail
 
-    fine = len(jobsd)  
-    
+    fine = len(jobsd)
+    #fine=0
     k=0
-              
+   
+    
     for j in jobs:
         try:
            h2 = j.find("h2")
@@ -100,20 +101,22 @@ while fine != 0:
                  print('Salary: '+salary.strip())
                  print('Company: '+company.strip())
                  print('Location: '+location.strip())
-                 print('Pub date: '+date_ins['content'])
+                 print('Publication date: '+date_ins['content'])
                  query = "INSERT INTO cwjobs (jid, location, salary, recr_comp, link_desc, date_post, applied, job_key, jtitle) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);"
                  data = (jid, location, salary, company, link['href'], date_ins['content'],'False', jk, title)
-                 print(data)
+                 
                  cur.execute(query, data)
                  conn.commit()
                  get_link_final_stage(jid, link['href'])
            
            k = k+1
-           time.sleep(2)
+           time.sleep(1)
         except ValueError:
            break
-    i = i+1
-      
+    print('\n')
+    i = i+1    
+   
+    
 
 
 
