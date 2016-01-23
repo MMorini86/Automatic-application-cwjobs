@@ -94,8 +94,8 @@ for num in data[0].split():
                 if str(info['href']).find('mailto') != -1 and str(info['href']).find('matteo.morini994') == -1: #get reference person's mail
                    contact_p = str(info['href'])[7:]
                
-            print("Application done on "+pulisci(date)+" for:"+pulisci(subjd)+" (job n."+pulisci(jid) +")\n")
-            file.write("Application done on "+pulisci(date)+" for:"+pulisci(subjd)+" (job n."+pulisci(jid) +")\r\n")
+            print("Application done on "+pulisci(date)+" for:"+pulisci(subjd)+" (job n."+pulisci(jid) +")")
+            file.write("Application done on "+pulisci(date)+" for:"+pulisci(subjd)+" (job n."+pulisci(jid) +")\r")
             #check if it is a new mail 
             query = "SELECT applied FROM cwjobs WHERE jid ="+ jid+ ";"
             cur.execute(query)
@@ -103,6 +103,8 @@ for num in data[0].split():
             
             if r[0] == False:
                #upd main table with contact mail and changing to true column applied
+               input("STOP")
+               print("New contatct: "+contact_p+' ID: '+jid+'\r\n')
                file.write("New contatct: "+contact_p+' ID: '+jid+'\r\n')
                file.write('\n')
                query = "UPDATE cwjobs SET contact_p ='"+contact_p+"', applied = true WHERE jid='"+jid+"';" 
@@ -110,7 +112,7 @@ for num in data[0].split():
                conn.commit()
                
             else:
-               print("Contact already added: "+contact_p)
+               print("Contact already added: "+contact_p+'\n')
                file.write("Contact already added: "+contact_p+'\r\n')
                file.write('\n')
 
@@ -120,4 +122,3 @@ cur.close()
 conn.close()
 mail.close()
 mail.logout()
-
