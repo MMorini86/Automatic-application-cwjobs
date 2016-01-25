@@ -71,7 +71,7 @@ try:
                  this position.
                  Looking forward to hearing from you."""
         bodym3 = """\nBest regards\nMatteo Morini\nMail: """ + umail + """
-        Mobile: 07951489063"""
+        Mobile: mymobile"""
         bodym = bodym1 + " ".join(bodym2.split()) + bodym3
         subj = """README: Note on job application (cwjob reference
              n.""" + str(r[1]) + """) - Matteo Morini"""
