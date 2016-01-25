@@ -1,7 +1,7 @@
 # Automatic-application-cwjobs
 Send automatic applications to cwjobs.co.uk using python 
 
-Purpose: show to recruiters that I have knowledges in programming languages, DB and web.
+Purpose: to show recruiters that I know about programming languages, databases and the web.
 
 
 At the moment I wrote 4 scripts in python to launch sequentially:
@@ -24,9 +24,9 @@ At the moment I wrote 4 scripts in python to launch sequentially:
                       mail_sent boolean,
                       CONSTRAINT cwjobs_pkey PRIMARY KEY (jid)
                     )
-  2. send_app.py: using Selenium I will apply only one to all jobs present in the table cwjobs. Option: filter again on the location.
-  3. store_confir_mail.py: store application confirmation through application confirmation mail received, updating main table with the                                reference person's mail and updating the column applied from false to true.
-  4. send_mail_2ref: send mail with a note to each reference person.
+  2. send_app.py: using Selenium I will apply to each jobs present in the table cwjobs. Option: filter again on the location and job keys.
+  3. store_confir_mail.py: store application confirmation through application confirmation mail received, updating main table with the                                reference person's mail and updating the column applied from false to true. Log of stored mail.
+  4. send_mail_2ref: send mail with a note to each reference person. Log of mail sent.
   
-The scripts at the moment don't contain sophisticated controls, most important thing is APPLYING!!
+The scripts at the moment don't contain sophisticated controls, the most important thing is APPLYING!!
    
