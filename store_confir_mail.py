@@ -53,7 +53,7 @@ passdb = getpass.getpass("Input password DB: ")
 try:
     conn = psycopg2.connect(
          dbname='cwjobs',  user='postgres',
-         host='localhost', password='cwj4rr1v0')
+         host='localhost', password=passdb)
     print("Connection OK")
 except psycopg2.Error as e:
     print("I am unable to connect to the database.")
