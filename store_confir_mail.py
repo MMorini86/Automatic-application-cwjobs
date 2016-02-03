@@ -125,7 +125,7 @@ for num in data[0].split():
                 file.write("New contatct: "+contact_p+' ID: '+jid+'\r\n')
                 file.write('\n')
                 query = "UPDATE cwjobs SET contact_p ='" + contact_p + \
-                        "', applied = true WHERE jid='"+jid+"';"
+                        "', applied = true, mail_sent = false WHERE jid='"+jid+"';"
                 cur.execute(query)
                 conn.commit()
             else:
